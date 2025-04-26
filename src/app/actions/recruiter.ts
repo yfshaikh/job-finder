@@ -282,3 +282,71 @@ export async function getApplicationDetails(applicationId: string) {
   }
 }
 
+// Update job posting
+export async function updateJobPosting(recruiterId: string, jobId: string, formData: FormData) {
+  try {
+    console.log("[UpdateJobPosting] Updating job posting:", { recruiterId, jobId });
+
+    const job_title = formData.get("job_title") as string;
+    const job_description = formData.get("job_description") as string;
+    const location = formData.get("location") as string;
+    const salary_range = formData.get("salary_range") as string;
+
+    console.log("[UpdateJobPosting] Parsed form fields:", {
+      job_title,
+      job_description,
+      location,
+      salary_range,
+    });
+
+    if (!job_title || !job_description || !location) {
+      console.warn("[UpdateJobPosting] Missing required fields");
+      return { success: false, error: "Job title, description, and location are required" };
+    }
+
+    // First, verify that this job belongs to the recruiter
+    const [jobCheckRows] = await pool.execute(
+      `SELECT recruiter_id FROM job_postings WHERE job_id = ?`,
+      [Number.parseInt(jobId)]
+    );
+
+    const jobCheck = jobCheckRows as any[];
+
+    if (jobCheck.length === 0) {
+      console.warn("[UpdateJobPosting] Job not found");
+      return { success: false, error: "Job not found" };
+    }
+
+    if (jobCheck[0].recruiter_id.toString() !== recruiterId) {
+      console.warn("[UpdateJobPosting] Recruiter does not own this job");
+      return { success: false, error: "You don't have permission to edit this job" };
+    }
+
+    console.log("[UpdateJobPosting] Job verified, updating...");
+
+    await pool.execute(
+      `UPDATE job_postings
+       SET job_title = ?, job_description = ?, location = ?, salary_range = ?
+       WHERE job_id = ? AND recruiter_id = ?`,
+      [
+        job_title,
+        job_description,
+        location,
+        salary_range || null,
+        Number.parseInt(jobId),
+        Number.parseInt(recruiterId),
+      ]
+    );
+
+    console.log("[UpdateJobPosting] Update successful. Revalidating cache...");
+
+    revalidatePath("/recruiter/jobs");
+    revalidatePath(`/recruiter/jobs/${jobId}`);
+
+    return { success: true };
+  } catch (error: any) {
+    console.error("[UpdateJobPosting] Error:", error.message);
+    return { success: false, error: error.message };
+  }
+}
+

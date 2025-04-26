@@ -57,11 +57,11 @@ export default async function RecruiterJobs() {
                     </CardDescription>
                   </div>
                   <div className="flex space-x-2">
-                    {/* <Button variant="outline" size="sm" asChild>
+                    <Button variant="outline" size="sm" asChild>
                       <Link href={`/recruiter/jobs/${job.job_id}/edit`}>
                         <Edit className="mr-2 h-4 w-4" /> Edit
                       </Link>
-                    </Button> */}
+                    </Button>
                     <JobDeleteButton jobId={job.job_id.toString()} />
                   </div>
                 </div>
