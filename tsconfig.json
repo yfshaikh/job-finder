@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/actions/auth.js", "src/app/recruiter/jobs/page.jsx", "src/app/recruiter/dashboard/page.jsx", "src/app/recruiter/applications/page.jsx", "src/app/job-seeker/applications/page.jsx", "src/app/job-seeker/dashboard/page.jsx", "src/app/job-seeker/jobs/page.jsx", "src/components/job-seeker/job-search.jsx", "src/app/recruiter/jobs/[id]/applications/page.jsx"],
   "exclude": ["node_modules"]
 }
