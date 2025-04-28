@@ -1,6 +1,6 @@
 import { getUserSession } from "@/app/actions/auth"
-import { getJobDetails } from "@/app/actions/job-seeker"
-import { getRecruiterProfile } from "@/app/actions/recruiter"
+import { getJobDetails } from "@/app/actions/job-actions"
+import { getRecruiterProfile } from "@/app/actions/recruiter-profile"
 import { JobEditForm } from "@/components/recruiter/job-edit-form"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { applyForJob } from "@/app/actions/job-seeker"
+import { applyForJob } from "@/app/actions/job-actions"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 

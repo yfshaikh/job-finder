@@ -1,5 +1,5 @@
 import { getUserSession } from "@/app/actions/auth"
-import { getAllJobs } from "@/app/actions/job-seeker"
+import { getAllJobs } from "@/app/actions/job-seeker-dashboard"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"

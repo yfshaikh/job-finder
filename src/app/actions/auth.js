@@ -2,14 +2,13 @@
 
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import {
-  createJobSeeker,
-  createRecruiter,
-  verifyJobSeekerCredentials,
-  verifyRecruiterCredentials,
-  // type UserType,
-} from "@/lib/db"
 
+
+import { createJobSeeker } from "./job-seeker-profile"
+import { verifyJobSeekerCredentials } from "./job-seeker-dashboard"
+
+import { createRecruiter } from "./recruiter-profile"
+import { verifyRecruiterCredentials } from "./recruiter-dashboard"
 // In a real application, you would use a proper hashing library like bcrypt
 // This is a simplified version for demonstration purposes
 function hashPassword(password) {

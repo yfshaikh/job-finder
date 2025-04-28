@@ -1,5 +1,5 @@
 import { getUserSession } from "@/app/actions/auth"
-import { getJobSeekerProfile } from "@/app/actions/job-seeker"
+import { getJobSeekerProfile } from "@/app/actions/job-seeker-profile"
 import { ProfileForm } from "@/components/job-seeker/profile-form"
 
 export default async function JobSeekerProfile() {

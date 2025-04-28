@@ -1,11 +1,10 @@
 import { getUserSession } from "@/app/actions/auth"
-import { getRecruiterApplications } from "@/app/actions/recruiter"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ApplicationStatusBadge } from "@/components/recruiter/application-status-badge"
 import { ApplicationStatusSelect } from "@/components/recruiter/application-status-select"
-
+import { getRecruiterApplications } from "@/app/actions/recruiter-dashboard"
 export default async function RecruiterApplications() {
   const session = await getUserSession()
 

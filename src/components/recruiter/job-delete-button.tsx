@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { deleteJobPosting } from "@/app/actions/recruiter"
+import { deleteJobPosting } from "@/app/actions/recruiter-actions"
 import { Button } from "@/components/ui/button"
 import {
   AlertDialog,

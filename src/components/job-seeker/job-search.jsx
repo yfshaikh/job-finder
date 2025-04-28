@@ -4,7 +4,6 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { searchJobs } from "@/app/actions/job-seeker"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"

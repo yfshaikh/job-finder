@@ -1,13 +1,12 @@
 import { getUserSession } from "@/app/actions/auth"
-import { getJobDetails } from "@/app/actions/job-seeker"
-import { getJobApplications } from "@/app/actions/recruiter"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft } from "lucide-react"
 import { ApplicationStatusBadge } from "@/components/recruiter/application-status-badge"
 import { ApplicationStatusSelect } from "@/components/recruiter/application-status-select"
-
+import { getJobApplications } from "@/app/actions/recruiter-dashboard"
+import { getJobDetails } from "@/app/actions/job-actions"
 
 
 export default async function JobApplicationsPage({ params }) {

@@ -1,5 +1,7 @@
 import { getUserSession } from "@/app/actions/auth"
-import { getJobSeekerProfile, getJobSeekerApplications, getRecommendedJobs } from "@/app/actions/job-seeker"
+
+import { getJobSeekerProfile } from "@/app/actions/job-seeker-profile"
+import { getJobSeekerApplications } from "@/app/actions/job-seeker-dashboard"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -15,11 +17,9 @@ export default async function JobSeekerDashboard() {
 
   const profileResult = await getJobSeekerProfile(session.userId)
   const applicationsResult = await getJobSeekerApplications(session.userId)
-  const recommendedJobsResult = await getRecommendedJobs(session.userId)
 
   const profile = profileResult.success ? profileResult.data : null
   const applications = applicationsResult.success ? applicationsResult.data : []
-  const recommendedJobs = recommendedJobsResult.success ? recommendedJobsResult.data : []
 
   // Calculate profile completion percentage
   const profileFields = profile
@@ -76,19 +76,21 @@ export default async function JobSeekerDashboard() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Recommended Jobs</CardTitle>
+            <CardTitle className="text-sm font-medium">Browse Jobs</CardTitle>
             <Briefcase className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{recommendedJobs.length}</div>
-            <p className="text-xs text-muted-foreground">Jobs matching your profile</p>
+            <p className="text-sm text-muted-foreground">
+              Search and apply to jobs that match your interests and skills.
+            </p>
           </CardContent>
           <CardFooter>
-            <Link href="/job-seeker/jobs" className="text-sm text-blue-600 hover:underline">
-              Browse all jobs
-            </Link>
+            <Button asChild>
+              <Link href="/job-seeker/jobs">Browse all jobs</Link>
+            </Button>
           </CardFooter>
         </Card>
+
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -141,40 +143,6 @@ export default async function JobSeekerDashboard() {
             </Button>
           </CardFooter>
         </Card>
-
-        {/* <Card>
-          <CardHeader>
-            <CardTitle>Recommended Jobs</CardTitle>
-            <CardDescription>Jobs that match your skills and experience</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {recommendedJobs.length > 0 ? (
-              <ul className="space-y-4">
-                {recommendedJobs.slice(0, 5).map((job) => (
-                  <li key={job.job_id} className="border-b pb-4 last:border-0 last:pb-0">
-                    <div className="font-medium">{job.job_title}</div>
-                    <div className="text-sm text-muted-foreground">{job.company_name}</div>
-                    <div className="text-sm text-muted-foreground">{job.location}</div>
-                    <div className="mt-2">
-                      <Button variant="outline" size="sm" asChild>
-                        <Link href={`/job-seeker/jobs/${job.job_id}`}>View Details</Link>
-                      </Button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-muted-foreground">
-                No job recommendations yet. Complete your profile to get personalized recommendations.
-              </p>
-            )}
-          </CardContent>
-          <CardFooter>
-            <Link href="/job-seeker/jobs" className="text-sm text-blue-600 hover:underline">
-              View all jobs
-            </Link>
-          </CardFooter>
-        </Card> */}
       </div>
     </div>
   )

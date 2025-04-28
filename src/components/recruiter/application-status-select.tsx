@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { updateApplicationStatus } from "@/app/actions/recruiter"
+import { updateApplicationStatus } from "@/app/actions/recruiter-actions"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "sonner"
 

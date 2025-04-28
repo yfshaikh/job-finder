@@ -1,5 +1,7 @@
 import { getUserSession } from "@/app/actions/auth"
-import { getRecruiterProfile, getRecruiterJobs, getRecruiterApplications } from "@/app/actions/recruiter"
+import { getRecruiterProfile } from "@/app/actions/recruiter-profile"
+import { getRecruiterJobs } from "@/app/actions/recruiter-dashboard"
+import { getRecruiterApplications } from "@/app/actions/recruiter-dashboard"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
