@@ -18,10 +18,6 @@ CREATE TABLE Job_Seekers (
   profile_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE job_seekers
-ADD COLUMN profile_completed BOOLEAN DEFAULT false;
-
-
 CREATE TABLE Recruiters (
   recruiter_id INT AUTO_INCREMENT PRIMARY KEY,
   company_name VARCHAR(100) NOT NULL,

@@ -9,11 +9,9 @@ import { verifyJobSeekerCredentials } from "./job-seeker-dashboard"
 
 import { createRecruiter } from "./recruiter-profile"
 import { verifyRecruiterCredentials } from "./recruiter-dashboard"
-// In a real application, you would use a proper hashing library like bcrypt
-// This is a simplified version for demonstration purposes
+
 function hashPassword(password) {
-  // In production, use a proper password hashing library
-  return password // This is NOT secure, just for demo
+  return password // This is not secure, just for demo
 }
 
 export async function signUpJobSeeker(formData) {
