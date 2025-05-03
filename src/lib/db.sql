@@ -27,7 +27,7 @@ CREATE TABLE Recruiters (
   company_description VARCHAR(250),
   company_website VARCHAR(100),
   phone VARCHAR(20) UNIQUE,
-  company_location VARCHAR(100) NOT NULL,
+  company_location VARCHAR(100),
   profile_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

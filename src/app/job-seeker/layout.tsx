@@ -51,7 +51,7 @@ export default async function JobSeekerLayout({
       </main>
       <footer className="border-t py-4">
         <div className="container flex justify-between text-sm text-muted-foreground">
-          <p>© 2023 JobConnect. All rights reserved.</p>
+          <p>© 2025 JobConnect. All rights reserved.</p>
         </div>
       </footer>
     </div>

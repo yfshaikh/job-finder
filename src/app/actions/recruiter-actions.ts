@@ -9,7 +9,6 @@ import { pool, type Recruiter, type JobSeeker } from "@/lib/db";
 // Create job posting 
 export async function createJobPosting(recruiterId: string, formData: FormData) {
   try {
-    console.log("[CreateJobPosting] Received form data for recruiterId:", recruiterId);
 
     const job_title = formData.get("job_title") as string;
     const job_description = formData.get("job_description") as string;
@@ -19,22 +18,12 @@ export async function createJobPosting(recruiterId: string, formData: FormData) 
     const job_type = formData.get("job_type") as string;
     const experience_level = formData.get("experience_level") as string;
 
-    console.log("[CreateJobPosting] Parsed form fields:", {
-      job_title,
-      job_description,
-      location,
-      salary_range,
-      company_name,
-      job_type,
-      experience_level,
-    });
 
     if (!job_title || !job_description || !location || !company_name) {
       console.warn("[CreateJobPosting] Missing required fields");
       return { success: false, error: "Job title, description, location, and company name are required" };
     }
 
-    console.log("[CreateJobPosting] Inserting job posting into database...");
 
     await pool.execute(
       `INSERT INTO job_postings (job_title, job_description, location, salary_range, company_name, recruiter_id, job_type, experience_level, date_posted)
@@ -51,7 +40,6 @@ export async function createJobPosting(recruiterId: string, formData: FormData) 
       ]
     );
 
-    console.log("[CreateJobPosting] Insert successful. Revalidating /recruiter/jobs cache...");
     revalidatePath("/recruiter/jobs");
 
     return { success: true };
